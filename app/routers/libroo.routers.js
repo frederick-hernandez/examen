@@ -10,9 +10,9 @@ router.get('/findall',libroo.findAll);
 
 router.get('/:id',libroo.findOneById);
 
-router.put('/:id',libroo.update);
+router.put('/:id/update',libroo.update);
 
-router.delete('/:id',libroo.delete);
+router.delete('/:id/delete',libroo.delete);
 
 module.exports = router;
 
