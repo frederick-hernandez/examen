@@ -3,9 +3,9 @@ const db = require('../config/db.config.js');
 const libroo = db.libroos;
 
 
-exports.create =(req,res) => {
-    const libroo = {
-        titulo: req.body.nombre,
+exports.create = (req, res) => {
+    const libroData = {
+        titulo: req.body.titulo,
         id_autor: req.body.id_autor,
         editorial: req.body.editorial,
         anio_pl: req.body.anio_pl,
@@ -14,18 +14,17 @@ exports.create =(req,res) => {
         cantidad_disponible: req.body.cantidad_disponible,
         ubicacion: req.body.ubicacion
     };
-    libroo.create(libroo)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message:
-            err.message || "Error creating the prueba."
-        });
-    });
-};
 
+    libroo.create(libroData)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Error creating the record."
+            });
+        });
+};
 
 exports.findAll = (req, res) => {
     libroo.findAll()

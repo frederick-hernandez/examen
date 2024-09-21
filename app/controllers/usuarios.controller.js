@@ -1,29 +1,31 @@
 const db = require('../config/db.config.js');
 
-const usuario = db.usuarios;
+const Usuario = db.usuarios;
+// Asegúrate de importar tu modelo correctamente
 
 exports.create = (req, res) => {
     const usuario = {
         nombre: req.body.nombre,
+        apellido: req.body.apellido,
         email: req.body.email,
         telefono: req.body.telefono,
         direccion: req.body.direccion,
         estado: req.body.estado
     };
-    usuario.create(usuario)
+    Usuario.create(usuario) // Asegúrate de que 'Usuario' es tu modelo de base de datos
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
-            message:
-            err.message || "Error creating the prueba."
+            message: err.message || "Error creating the user."
         });
     });
 };
 
+
 exports.findAll = (req, res) => {
-    usuario.findAll()
+    Usuario.findAll()
         .then(data => {
             res.send(data);
         })
@@ -36,7 +38,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOneById = (req, res) => {
-    usuario.findByPk(req.params.id)
+    Usuario.findByPk(req.params.id)
         .then(data => {
             if (!data)
                 res.status(404).send({ message: 'No se encontró el usuario con el id ' + req.params.id });
@@ -49,7 +51,7 @@ exports.findOneById = (req, res) => {
         });
 };
 exports.delete = (req, res) => {
-    usuario.findByPk(req.params.id)
+    Usuario.findByPk(req.params.id)
     .then(data => {
         if (!data) {
             return res.status(404).send({
@@ -77,7 +79,7 @@ exports.update = (req, res) => {
             message: "Los datos del usuario no pueden estar vacíos"
         });
     }
-    usuario.findByPk(req.params.id)
+    Usuario.findByPk(req.params.id)
     .then(data => {
         if (!data) {
             return res.status(404).send({
