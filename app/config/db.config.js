@@ -20,7 +20,5 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
   db.Sequelize = Sequelize;
   db.sequelize = sequelize;
   db.prueba = require('../models/ejemplo.model.js')(sequelize,Sequelize);
-  db.usuarios = require('../models/usuarios.models.js')(sequelize,Sequelize);
-  db.libroos = require('../models/Libros.model.js')(sequelize,Sequelize);
   module.exports = db;
   
